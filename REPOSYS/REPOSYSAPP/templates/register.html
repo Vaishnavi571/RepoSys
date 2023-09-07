@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .text-center{
+    color: #17a2b8;
+    margin: 0px;
+  }
+  h3.text-center{
+    font-size: 2em  !important;
+    margin-bottom: 20px;
+  }
+  .form-label{
+    font-size: 1.2em;
+    color: #05053b;
+  }
+    .errorlist{
+    color: red;
+    }
+
+
+
+
+
+
+
+
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-md-8">
+            <form action="{% url 'register' %}" class="bg-white  rounded-5 shadow-5-strong p-5"
+                  enctype='multipart/form-data'
+                  method="POST">
+                {% csrf_token %}
+                <h3 class="text-center ">Registration</h3>
+                <hr>
+                <div class="row mb-4">
+                    <div class="col">
+                        <!-- Firstname input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.first_name}}-->
+                            <input class="form-control" id="id_first_name" maxlength="225" name="first_name" required=""
+                                   type="text">
+                            <label class="form-label">First Name</label>
+                        </div>
+                        <!-- Rollno input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.roll_no}}-->
+                            <input class="form-control" id="id_roll_no" maxlength="225" name="roll_no" required=""
+                                   type="text">
+                            <label class="form-label">Roll No</label>
+                        </div>
+                        <!-- Year input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.year}}-->
+                            <input class="form-control" id="id_year" maxlength="30" name="year"
+                                   placeholder="FE, SE, TE, BE"
+                                   required="" type="text">
+                            <label class="form-label">Year</label>
+                        </div>
+                        <!-- Email Input-->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.email}}-->
+                            <input class="form-control" id="id_email" maxlength="225" name="email" required=""
+                                   type="email">
+                            <label class="form-label">Email address</label>
+                        </div>
+                        <!--                        Date of Addmission-->
+                        <div class="form-outline mb-4">
+                            <input class="form-control" id="date_of_add" name="date_of_add" required
+                                   type="date">
+                            <label class="form-label">Date of Admission</label>
+                        </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{user_form.password1}}-->
+                            <input autocomplete="new-password" class="form-control" id="id_password1" name="password1"
+                                   required="" type="password">
+                            <label class="form-label">Password</label>
+                            <div class="form-text" id="passwordHelp" style="font-size: 0.8em">
+                                Your password can’t be too similar to your other personal information.
+                                Your password must contain at least 8 characters.
+                                Your password can’t be a commonly used password.
+                                Your password can’t be entirely numeric.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.last_name}}-->
+                            <input class="form-control" id="id_last_name" maxlength="225" name="last_name" required=""
+                                   type="text">
+                            <label class="form-label">Last Name</label>
+                        </div>
+                        <!-- Branch input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.branch}}-->
+                            <input class="form-control" id="id_branch" maxlength="45"
+                                   name="branch" placeholder="INFT, CMPN, EXTC, ETRX, BIOM, MNGT"
+                                   required="" type="text">
+                            <label class="form-label">Branch</label>
+                        </div>
+                        <!-- Division input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.div}}-->
+                            <input class="form-control" id="id_div" maxlength="30" name="div" placeholder="A, B"
+                                   required="" type="text">
+                            <label class="form-label">Division</label>
+                        </div>
+                        <!-- Phone Number input -->
+                        <div class="form-outline mb-4">
+                            <!--                                 {{form.mobile}}-->
+                            <input class="form-control" id="id_mobile" maxlength="10" name="mobile" required=""
+                                   type="text">
+                            <label class="form-label">Mobile No.</label>
+                        </div>
+                        <!-- Username input -->
+                        <div class="form-outline mb-4" id="name">
+                            <!--                            {{user_form.username}}-->
+                            <input class="form-control" id="id_username"
+                                   maxlength="150" name="username" placeholder="Username is your Roll no" required=""
+                                   type="text">
+                            <label class="form-label">Username</label>
+                        </div>
+                        <!-- Confirm Password input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{user_form.password2}}-->
+                            <input autocomplete="new-password" class="form-control" id="id_password2" name="password2"
+                                   required="" type="password">
+                            <label class="form-label">Confirm Password</label>
+                        </div>
+                        <!--                        Profile Photo Input-->
+                        <div class="form-outline mb-4">
+                            <input accept="image/*" class="form-control" id="id_profile_image" name="profile_image"
+                                   required="" type="file">
+                            <label class="form-label">Profile Image</label>
+                        </div>
+                    </div>
+                </div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                <div class="row mb-4">
+                    <a href="{%url 'login'%}">Already Registered?</a>
+                </div>
+                <!-- Submit button -->
+                <button class="btn btn-primary btn-block" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("input").addClass("form-control")
+    var username = {{request.user.username}}
+    const username=$("id_first_name").val()
+    $("id_username").val()
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}
+
+

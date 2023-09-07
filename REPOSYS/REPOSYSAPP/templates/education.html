@@ -1,0 +1,316 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .text-center{
+    color: #17a2b8;
+    margin: 0px;
+  }
+  h3.text-center{
+    font-size: 2em  !important;
+    margin-bottom: 20px;
+  }
+  .form-label{
+    font-size: 1.2em;
+    color: #05053b;
+  }
+  .errorlist{
+    color: red;
+    }
+
+
+</style>
+<script>
+var stateObject = {
+"India": { "AndraPradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", "Kurnool", "Prakasam", "Nellore", "        Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari"],
+            "ArunachalPradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kra Daadi", "Kurung Kumey", "Lohit", "Longding", "Lower Dibang Valley", "Lower Subansiri", "Namsai", "Papum Pare", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang", "Itanagar"],
+          "Assam": ["Baksa","Barpeta","Biswanath","Bongaigaon","Cachar","Charaideo","Chirang","Darrang","Dhemaji","Dhubri","Dibrugarh","Goalpara","Golaghat","Hailakandi","Hojai","Jorhat","Kamrup Metropolitan","Kamrup (Rural)","Karbi Anglong","Karimganj","Kokrajhar","Lakhimpur","Majuli","Morigaon","Nagaon","Nalbari","Dima Hasao","Sivasagar","Sonitpur","South Salmara Mankachar","Tinsukia","Udalguri","West Karbi Anglong"],
+          "Bihar": ["Araria","Arwal","Aurangabad","Banka","Begusarai","Bhagalpur","Bhojpur","Buxar","Darbhanga","East Champaran","Gaya","Gopalganj","Jamui","Jehanabad","Kaimur","Katihar","Khagaria","Kishanganj","Lakhisarai","Madhepura","Madhubani","Munger","Muzaffarpur","Nalanda","Nawada","Patna","Purnia","Rohtas","Saharsa","Samastipur","Saran","Sheikhpura","Sheohar","Sitamarhi","Siwan","Supaul","Vaishali","West Champaran"],
+          "Chhattisgarh": ["Balod","Baloda Bazar","Balrampur","Bastar","Bemetara","Bijapur","Bilaspur","Dantewada","Dhamtari","Durg","Gariaband","Janjgir Champa","Jashpur","Kabirdham","Kanker","Kondagaon","Korba","Koriya","Mahasamund","Mungeli","Narayanpur","Raigarh","Raipur","Rajnandgaon","Sukma","Surajpur","Surguja"],
+          "Goa": ["North Goa","South Goa"],
+          "Gujarat": ["Ahmedabad","Amreli","Anand","Aravalli","Banaskantha","Bharuch","Bhavnagar","Botad","Chhota Udaipur","Dahod","Dang","Devbhoomi Dwarka","Gandhinagar","Gir Somnath","Jamnagar","Junagadh","Kheda","Kutch","Mahisagar","Mehsana","Morbi","Narmada","Navsari","Panchmahal","Patan","Porbandar","Rajkot","Sabarkantha","Surat","Surendranagar","Tapi","Vadodara","Valsad"],
+          "Haryana" :["Ambala","Bhiwani","Charkhi Dadri","Faridabad","Fatehabad","Gurugram","Hisar","Jhajjar","Jind","Kaithal","Karnal","Kurukshetra","Mahendragarh","Mewat","Palwal","Panchkula","Panipat","Rewari","Rohtak","Sirsa","Sonipat","Yamunanagar"],
+          "HimachalPradesh": ["Bilaspur","Chamba","Hamirpur","Kangra","Kinnaur","Kullu","Lahaul Spiti","Mandi","Shimla","Sirmaur","Solan","Una"],
+          "JammuKashmir": ["Anantnag","Bandipora","Baramulla","Budgam","Doda","Ganderbal","Jammu","Kargil","Kathua","Kishtwar","Kulgam","Kupwara","Leh","Poonch","Pulwama","Rajouri","Ramban","Reasi","Samba","Shopian","Srinagar","Udhampur"],
+          "Jharkhand": ["Bokaro","Chatra","Deoghar","Dhanbad","Dumka","East Singhbhum","Garhwa","Giridih","Godda","Gumla","Hazaribagh","Jamtara","Khunti","Koderma","Latehar","Lohardaga","Pakur","Palamu","Ramgarh","Ranchi","Sahebganj","Seraikela Kharsawan","Simdega","West Singhbhum"],
+          "Karnataka": ["Bagalkot","Bangalore Rural","Bangalore Urban","Belgaum","Bellary","Bidar","Vijayapura","Chamarajanagar","Chikkaballapur","Chikkamagaluru","Chitradurga","Dakshina Kannada","Davanagere","Dharwad","Gadag","Gulbarga","Hassan","Haveri","Kodagu","Kolar","Koppal","Mandya","Mysore","Raichur","Ramanagara","Shimoga","Tumkur","Udupi","Uttara Kannada","Yadgir"],
+          "Kerala": ["Alappuzha","Ernakulam","Idukki","Kannur","Kasaragod","Kollam","Kottayam","Kozhikode","Malappuram","Palakkad","Pathanamthitta","Thiruvananthapuram","Thrissur","Wayanad"],
+          "MadhyaPradesh": ["Agar Malwa","Alirajpur","Anuppur","Ashoknagar","Balaghat","Barwani","Betul","Bhind","Bhopal","Burhanpur","Chhatarpur","Chhindwara","Damoh","Datia","Dewas","Dhar","Dindori","Guna","Gwalior","Harda","Hoshangabad","Indore","Jabalpur","Jhabua","Katni","Khandwa","Khargone","Mandla","Mandsaur","Morena","Narsinghpur","Neemuch","Panna","Raisen","Rajgarh","Ratlam","Rewa","Sagar","Satna", "Sehore","Seoni","Shahdol","Shajapur","Sheopur","Shivpuri","Sidhi","Singrauli","Tikamgarh","Ujjain","Umaria","Vidisha"],
+          "Maharashtra": ["Ahmednagar","Akola","Amravati","Aurangabad","Beed","Bhandara","Buldhana","Chandrapur","Dhule","Gadchiroli","Gondia","Hingoli","Jalgaon","Jalna","Kolhapur","Latur","Mumbai City","Mumbai Suburban","Nagpur","Nanded","Nandurbar","Nashik","Osmanabad","Palghar","Parbhani","Pune","Raigad","Ratnagiri","Sangli","Satara","Sindhudurg","Solapur","Thane","Wardha","Washim","Yavatmal"],
+          "Manipur": ["Bishnupur","Chandel","Churachandpur","Imphal East","Imphal West","Jiribam","Kakching","Kamjong","Kangpokpi","Noney","Pherzawl","Senapati","Tamenglong","Tengnoupal","Thoubal","Ukhrul"],
+          "Meghalaya": ["East Garo Hills","East Jaintia Hills","East Khasi Hills","North Garo Hills","Ri Bhoi","South Garo Hills","South West Garo Hills","South West Khasi Hills","West Garo Hills","West Jaintia Hills","West Khasi Hills"],
+          "Mizoram": ["Aizawl","Champhai","Kolasib","Lawngtlai","Lunglei","Mamit","Saiha","Serchhip","Aizawl","Champhai","Kolasib","Lawngtlai","Lunglei","Mamit","Saiha","Serchhip"],
+          "Nagaland": ["Dimapur","Kiphire","Kohima","Longleng","Mokokchung","Mon","Peren","Phek","Tuensang","Wokha","Zunheboto"],
+          "Odisha": ["Angul","Balangir","Balasore","Bargarh","Bhadrak","Boudh","Cuttack","Debagarh","Dhenkanal","Gajapati","Ganjam","Jagatsinghpur","Jajpur","Jharsuguda","Kalahandi","Kandhamal","Kendrapara","Kendujhar","Khordha","Koraput","Malkangiri","Mayurbhanj","Nabarangpur","Nayagarh","Nuapada","Puri","Rayagada","Sambalpur","Subarnapur","Sundergarh"],
+          "Punjab": ["Amritsar","Barnala","Bathinda","Faridkot","Fatehgarh Sahib","Fazilka","Firozpur","Gurdaspur","Hoshiarpur","Jalandhar","Kapurthala","Ludhiana","Mansa","Moga","Mohali","Muktsar","Pathankot","Patiala","Rupnagar","Sangrur","Shaheed Bhagat Singh Nagar","Tarn Taran"],
+          "Rajasthan": ["Ajmer","Alwar","Banswara","Baran","Barmer","Bharatpur","Bhilwara","Bikaner","Bundi","Chittorgarh","Churu","Dausa","Dholpur","Dungarpur","Ganganagar","Hanumangarh","Jaipur","Jaisalmer","Jalore","Jhalawar","Jhunjhunu","Jodhpur","Karauli","Kota","Nagaur","Pali","Pratapgarh","Rajsamand","Sawai Madhopur","Sikar","Sirohi","Tonk","Udaipur"],
+          "Sikkim": ["East Sikkim","North Sikkim","South Sikkim","West Sikkim"],
+          "TamilNadu": ["Ariyalur","Chennai","Coimbatore","Cuddalore","Dharmapuri","Dindigul","Erode","Kanchipuram","Kanyakumari","Karur","Krishnagiri","Madurai","Nagapattinam","Namakkal","Nilgiris","Perambalur","Pudukkottai","Ramanathapuram","Salem","Sivaganga","Thanjavur","Theni","Thoothukudi","Tiruchirappalli","Tirunelveli","Tiruppur","Tiruvallur","Tiruvannamalai","Tiruvarur","Vellore","Viluppuram","Virudhunagar"],
+          "Telangana": ["Adilabad","Bhadradri Kothagudem","Hyderabad","Jagtial","Jangaon","Jayashankar","Jogulamba","Kamareddy","Karimnagar","Khammam","Komaram Bheem","Mahabubabad","Mahbubnagar","Mancherial","Medak","Medchal","Nagarkurnool","Nalgonda","Nirmal","Nizamabad","Peddapalli","Rajanna Sircilla","Ranga Reddy","Sangareddy","Siddipet","Suryapet","Vikarabad","Wanaparthy","Warangal Rural","Warangal Urban","Yadadri Bhuvanagiri"],
+          "Tripura": ["Dhalai","Gomati","Khowai","North Tripura","Sepahijala","South Tripura","Unakoti","West Tripura"],
+          "UttarPradesh": ["Agra","Aligarh","Allahabad","Ambedkar Nagar","Amethi","Amroha","Auraiya","Azamgarh","Baghpat","Bahraich","Ballia","Balrampur","Banda","Barabanki","Bareilly","Basti","Bhadohi","Bijnor","Budaun","Bulandshahr","Chandauli","Chitrakoot","Deoria","Etah","Etawah","Faizabad","Farrukhabad","Fatehpur","Firozabad","Gautam Buddha Nagar","Ghaziabad","Ghazipur","Gonda","Gorakhpur","Hamirpur","Hapur","Hardoi","Hathras","Jalaun","Jaunpur","Jhansi","Kannauj","Kanpur Dehat","Kanpur Nagar","Kasganj","Kaushambi","Kheri","Kushinagar","Lalitpur","Lucknow","Maharajganj","Mahoba","Mainpuri","Mathura","Mau","Meerut","Mirzapur","Moradabad","Muzaffarnagar","Pilibhit","Pratapgarh","Raebareli","Rampur","Saharanpur","Sambhal","Sant Kabir Nagar","Shahjahanpur","Shamli","Shravasti","Siddharthnagar","Sitapur","Sonbhadra","Sultanpur","Unnao","Varanasi"],
+          "Uttarakhand": ["Almora","Bageshwar","Chamoli","Champawat","Dehradun","Haridwar","Nainital","Pauri","Pithoragarh","Rudraprayag","Tehri","Udham Singh Nagar","Uttarkashi"],
+          "WestBengal": ["Alipurduar","Bankura","Birbhum","Cooch Behar","Dakshin Dinajpur","Darjeeling","Hooghly","Howrah","Jalpaiguri","Jhargram","Kalimpong","Kolkata","Malda","Murshidabad","Nadia","North 24 Parganas","Paschim Bardhaman","Paschim Medinipur","Purba Bardhaman","Purba Medinipur","Purulia","South 24 Parganas","Uttar Dinajpur"],
+          "AndamanNicobar": ["Nicobar","North Middle Andaman","South Andaman"],
+          "Chandigarh": ["Chandigarh"],
+          "DadraHaveli": ["Dadra Nagar Haveli"],
+          "DamanDiu": ["Daman","Diu"],
+          "Delhi": ["Central Delhi","East Delhi","New Delhi","North Delhi","North East Delhi","North West Delhi","Shahdara","South Delhi","South East Delhi","South West Delhi","West Delhi"],
+          "Lakshadweep": ["Lakshadweep"],
+          "Puducherry": ["Karaikal","Mahe","Puducherry","Yanam"],
+
+},
+
+}
+window.onload = function () {
+var countySel = document.getElementById("countySel"),
+stateSel = document.getElementById("stateSel"),
+districtSel = document.getElementById("districtSel");
+for (var country in stateObject) {
+countySel.options[countySel.options.length] = new Option(country, country);
+}
+countySel.onchange = function () {
+stateSel.length = 1; // remove all options bar first
+districtSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+for (var state in stateObject[this.value]) {
+stateSel.options[stateSel.options.length] = new Option(state, state);
+}
+}
+countySel.onchange(); // reset in case page is reloaded
+stateSel.onchange = function () {
+districtSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+var district = stateObject[countySel.value][this.value];
+for (var i = 0; i < district.length; i++) {
+districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+}
+}
+}
+
+
+</script>
+
+<div class="container" id="education">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 col-md-8">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5" enctype='multipart/form-data' method="POST">
+                {% csrf_token %}
+                <h3 class="text-center ">Education Details</h3>
+                <hr>
+                <div class="row mb-4">
+                    <div class="col">
+                        <!-- Qualification Level input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="qua_level">Qualification Level</label>
+                            <select class="form-control" id="qua_level" name="qua_level" required>
+                                <option disabled selected>--Select--</option>
+                                <option value="S.S.C.(10 Std)">S.S.C.(10 Std)</option>
+                                <option value="F.Y.J.C.(11 Std)">F.Y.J.C.(11 Std)</option>
+                                <option value="S.Y.J.C.(11 Std)">S.Y.J.C.(12 Std)</option>
+                                <option value="Under Graduate Course">Under Graduate Course</option>
+                                <option value="Post Graduate Course">Post Graduate Course</option>
+                                <option value="Vocational Course">Vocational Course</option>
+                                <option value="Certificate Course">Certificate Course</option>
+                                <option value="Diploma Course">Diploma Course</option>
+                            </select>
+                        </div>
+
+                        <!-- Institute Country input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="districtSel">Institute Country</label>
+                            <select class="form-control" id="countySel" name="country" required size="1">
+                                <option disabled selected value="">--Select--</option>
+                            </select>
+                        </div>
+
+                        <!-- College Name input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="college_name">College Name/School Name</label>
+                            <input class="form-control" id="college_name" name="college_name" required type="text">
+                        </div>
+
+                        <!-- Addmission Year input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="admission_year">Addmission Year</label>
+                            <input class="form-control" id="admission_year" name="admission_year" required type="date">
+                        </div>
+                        <!-- Percentage/CGPA input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="percentage">Percentage/CGPA</label>
+                            <input class="form-control" id="percentage" name="percentage" required type="text">
+                        </div>
+                        <!-- Upload Marksheet-->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label" for="upload_marksheet">Upload Marksheet</label>
+                            <input class="form-control" id="upload_marksheet" name="upload_marksheet" required
+                                   type="file">
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Stream input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="stream">Stream</label>
+                            <select class="form-control" id="stream" name="stream" required>
+                                <option disabled selected>--Select--</option>
+                                <option value="SSC">SSC</option>
+                                <option value="Science">Science</option>
+                                <option value="Engineering">Engineering</option>
+                            </select>
+                        </div>
+                        <!-- Institute State input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="stateSel">Institute State</label>
+                            <select class="form-control" id="stateSel" name="state" required size="1">
+                                <option disabled selected value="">--Select Country First--</option>
+                            </select>
+                        </div>
+
+                        <!-- Course Name input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="course_name">Course Name</label>
+                            <select class="form-control" id="course_name" name="course_name" required>
+                                <option disabled selected>--Select--</option>
+                                <option value="S.S.C.(10 Std)">S.S.C.(10 Std)</option>
+                                <option value="H.S.C.(12 Std)">H.S.C.(12 Std)</option>
+                                <option value="Bachelor of Engineering(B.E.)-Biomedical Engineering(UnAided)">Bachelor
+                                    of Engineering(B.E.)-Biomedical Engineering(UnAided)
+                                </option>
+                                <option value="Bachelor of Engineering(B.E.)-Computer Engineering(UnAided)">Bachelor of
+                                    Engineering(B.E.)-Computer Engineering(UnAided)
+                                </option>
+                                <option value="Bachelor of Engineering(B.E.)-Electronics Engineering(UnAided)">Bachelor
+                                    of Engineering(B.E.)-Electronics Engineering(UnAided)
+                                </option>
+                                <option value="Bachelor of Engineering(B.E.)-Information Technology(UnAided)">Bachelor
+                                    of Engineering(B.E.)-Information Technology(UnAided)
+                                </option>
+                                <option value="Bachelor of Engineering(B.E.)-Electronics & Telecommunication
+                                    Engineering(UnAided)">Bachelor of Engineering(B.E.)-Electronics & Telecommunication
+                                    Engineering(UnAided)
+                                </option>
+                                <option value="Management Studies">Management Studies</option>
+                            </select>
+                        </div>
+                        <!-- Passing Year input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="pass_year">Passing Year</label>
+                            <input class="form-control" id="pass_year" name="pass_year" required type="date">
+                        </div>
+                        <!-- No. of attempts input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="attempts">Attempts</label>
+                            <select class="form-control" id="attempts" name="attempts" required>
+                                <option disabled selected>--Select--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Completed/Pursuing input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="completed">Completed</label>
+                            <select class="form-control" id="completed" name="completed" required>
+                                <option disabled selected>--Select--</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Pursuing">Pursuing</option>
+                            </select>
+                        </div>
+                        <!-- Institute District input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="districtSel">Institute District</label>
+                            <select class="form-control" id="districtSel" name="district" required size="1">
+                                <option disabled selected value="">--Select State First--</option>
+                            </select>
+                        </div>
+                        <!-- Board/University input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="board_university">Board/University</label>
+                            <select class="form-control" id="board_university" name="board_university" required>
+                                <option disabled selected>--Select--</option>
+                                <option value="Maharashtra Board">Maharashtra Board</option>
+                                <option value="Mumbai University">Mumbai University</option>
+                            </select>
+                        </div>
+                        <!-- Result input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="result">Result</label>
+                            <select class="form-control" id="result" name="result" required>
+                                <option disabled selected>--Select--</option>
+                                <option value="Passed">Passed</option>
+                            </select>
+                        </div>
+
+                        <!-- Mode input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="mode">Mode</label>
+                            <select class="form-control" id="mode" name="mode" required>
+                                <option value="">--Select--</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Distance/Correspondence">Distance/Correspondence</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                <div class="row mb-4">
+                    <div class="col">
+                        <!-- Save button -->
+                        <button class="btn btn-primary btn-block" type="submit">SAVE</button>
+                    </div>
+                </div>
+            </form>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-md-8">
+                        <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                            <h3 class="text-center ">Your Uploaded Marksheet</h3>
+                            <hr>
+                            <table class="table table-bordered  table-hover table-responsive">
+                                <tr style="background-color: lightgrey ;">
+                                    <th>Qualification Level</th>
+                                    <th>Stream</th>
+                                    <th>Course</th>
+                                    <th>Institute State</th>
+                                    <th>Board/University</th>
+                                    <th>Result</th>
+                                    <th>Admission Year</th>
+                                    <th>Passing Year</th>
+                                    <th>Percentage/CGPA</th>
+                                    <th>View Document</th>
+                                </tr>
+
+                                {% for education in allcert %}
+                                <tr>
+                                    <td>{{education.qua_level}}</td>
+                                    <td>{{education.stream}}</td>
+                                    <td>{{education.course_name}}</td>
+                                    <td>{{education.state}}</td>
+                                    <td>{{education.board_university}}</td>
+                                    <td>{{education.result}}</td>
+                                    <td>{{education.admission_year}}</td>
+                                    <td>{{education.pass_year}}</td>
+                                    <td>{{education.percentage}}</td>
+                                    <td><a class="btn btn-primary " href="{{education.upload_marksheet.url}}"
+                                           role="button" target="_blank">VIEW DOCUMENT</a></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

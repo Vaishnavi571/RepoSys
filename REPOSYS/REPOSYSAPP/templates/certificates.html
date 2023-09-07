@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .text-center{
+    color: #17a2b8;
+    margin: 0px;
+  }
+  h3.text-center{
+    font-size: 2em  !important;
+    margin-bottom: 20px;
+  }
+   .col-form-label{
+      font-size: 1.2em;
+      color: #05053b;
+   }
+   th {
+      color: #05053b;
+      text-align: center;
+   }
+   tr{
+        text-align : center;
+        color: #05053b;
+   }
+   .table-responsive{
+    width: 100%
+   }
+   .errorlist{
+    color: red;
+    }
+
+
+
+
+
+</style>
+
+<div class="container" id="certificate">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 col-md-8">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5" enctype='multipart/form-data' method="POST">
+                {% csrf_token %}
+                <h3 class="text-center ">Certificates</h3>
+                <hr>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="type_of_cert">Type of Certificate</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="type_of_cert" name="type_of_cert" required>
+                            <option disabled selected>--Select--</option>
+                            <option value="Gate Scorecard">Gate Scorecard</option>
+                            <option value="GRE Scorecard">GRE Scorecard</option>
+                            <option value="Admit Card">Admit Card</option>
+                            <option value="Letter of Recommendation">Letter of Recommendation</option>
+                            <option value="Internship Certificate">Internship Certificate</option>
+                            <option value="Course Completion Certificate">Course Completion Certificate</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="name_of_event">Name of Event</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="name_of_event" name="name_of_event" required type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="auth_of_event">Issuing Authority of Event</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="auth_of_event" name="auth_of_event" required type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="date_of_event">Date of Event</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="date_of_event" name="date_of_event" required type="date">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="desc_of_event">Describe Event</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="desc_of_event" name="desc_of_event"
+                                  placeholder="If nothing then type NULL" required rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="upload_cert">Upload Certificate</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="upload_cert" name="upload_cert" required type="file">
+                    </div>
+                </div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                <div class="form-group row">
+                    <div class="col">
+                        <button class="btn btn-primary btn-block" type="submit">ADD</button>
+                    </div>
+                </div>
+            </form>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-md-8">
+                        <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                            <h3 class="text-center ">Your Uploaded Certificates</h3>
+                            <hr>
+                            <table class="table table-bordered table-hover  table-responsive" style="width:100%; ">
+                                <tr style="background-color: lightgrey;">
+                                    <th style="width:450px; text-align: left;">Name of Certificate</th>
+                                    <th style="width:705px; text-align: left;">Link of Certificate Document</th>
+                                </tr>
+
+                                {% for certificate in allcert %}
+                                <tr>
+                                    <td style="width:450px; text-align: left;">{{certificate.type_of_cert }}</td>
+                                    <td style="width:705px; text-align: left;"><a class="btn btn-primary"
+                                                                                  href="{{certificate.upload_cert.url}}"
+                                                                                  role="button"
+                                                                                  style="width:450px;" target="_blank">VIEW
+                                        DOCUMENT</a></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
